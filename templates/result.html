@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Route Results</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background: linear-gradient(to right, #2575fc, #6a11cb);
+        color: #fff;
+        padding: 50px;
+      }
+
+      h2,
+      h3 {
+        text-shadow: 1px 1px #00000050;
+      }
+
+      .safest {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      li {
+        background: rgba(255, 255, 255, 0.1);
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      a.button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #ff7f50;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+
+      a.button:hover {
+        background-color: #ff6347;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="safest">
+      <h2>Safest Path:</h2>
+      <p><strong>Path:</strong> {{ safest.path }}</p>
+      <p><strong>Safety Score:</strong> {{ safest.safetyScore }}</p>
+      <p><strong>Distance:</strong> {{ safest.distance }} km</p>
+      <p>
+        <strong>Nearest Police Station:</strong> {{ safest.nearestPoliceStation
+        }}
+      </p>
+    </div>
+
+    <h3>All Possible Paths:</h3>
+    <ul>
+      {% for p in all_paths %}
+      <li>
+        <strong>Path:</strong> {{ p.path }}<br />
+        <strong>Safety Score:</strong> {{ p.safetyScore }}<br />
+        <strong>Distance:</strong> {{ p.distance }} km
+      </li>
+      {% endfor %}
+    </ul>
+
+    <a href="/" class="button">Go Back</a>
+  </body>
+</html>
