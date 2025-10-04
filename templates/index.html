@@ -1,92 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <title>Women Safety Route Finder</title>
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- CSS Styling -->
-    <style>
-      body {
-        font-family: "Roboto", sans-serif;
-        background: linear-gradient(to right, #6a11cb, #2575fc);
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        margin: 0;
-      }
-
-      h1 {
-        font-size: 3rem;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px #00000050;
-      }
-
-      form {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      input[type="text"] {
-        padding: 10px;
-        margin: 10px 0;
-        width: 250px;
-        border-radius: 8px;
-        border: none;
-        outline: none;
-      }
-
-      button {
-        padding: 10px 20px;
-        background-color: #ff7f50;
-        border: none;
-        border-radius: 8px;
-        color: #fff;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-      <button type="button" onclick="sendSOS()">🚨 SOS Alert</button>
-
-<script>
-  function sendSOS() {
-    fetch("/sos", { method: "POST" })
-      .then(response => response.text())
-      .then(data => alert(data));
-  }
-</script>
-
-      button:hover {
-        background-color: #ff6347;
-        transform: scale(1.05);
-      }
-      
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Women Safest Route</title>
   </head>
   <body>
-    <h1>Women Safety Route Finder</h1>
-    <form action="/find_route" method="POST">
-      <input
-        type="text"
-        name="start"
-        placeholder="Enter Start Location"
-        required
-      /><br />
-      <input
-        type="text"
-        name="end"
-        placeholder="Enter End Location"
-        required
-      /><br />
-      <button type="submit">Find Safest Route</button>
-    </form>
+    <div id="root"></div>
   </body>
 </html>
