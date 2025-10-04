@@ -30,9 +30,8 @@ def generate_map(safest_path):
         self.policeProximity = policeProximity
     @app.route("/sos", methods=["POST"])
 def sos_alert():
-    # later, you can link this with DB to save the alert
-    return "🚨 SOS Alert Sent! Police have been notified."
-
+     print("SOS alert triggered")
+    
 
 
 def computeSafetyScore(edge, night=False):
