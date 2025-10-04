@@ -54,11 +54,21 @@
         cursor: pointer;
         transition: all 0.3s ease;
       }
+      <button type="button" onclick="sendSOS()">🚨 SOS Alert</button>
+
+<script>
+  function sendSOS() {
+    fetch("/sos", { method: "POST" })
+      .then(response => response.text())
+      .then(data => alert(data));
+  }
+</script>
 
       button:hover {
         background-color: #ff6347;
         transform: scale(1.05);
       }
+      
     </style>
   </head>
   <body>
