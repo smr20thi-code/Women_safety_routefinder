@@ -4,8 +4,8 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <h1>Women Safest Route</h1>
-      <p>Welcome! This is your route safety application.</p>
+      <h1>Welcome to Women Safest Route</h1>
+      <p>Your route safety companion.</p>
     </div>
   );
 }
