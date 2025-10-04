@@ -1,23 +1,23 @@
-name: Deploy Static Site to Firebase Hosting
+name: Deploy Static Site to Firebase Hosting (Service Account)
 
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main  
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout your repository code
+   
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Deploy directly to Firebase Hosting
+    
       - name: Deploy to Firebase Hosting
         uses: w9jds/firebase-action@v13.25.0
         with:
           args: deploy --only hosting --project women-safest-route
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
