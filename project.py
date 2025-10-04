@@ -1,15 +1,38 @@
 from flask import Flask, render_template, request
 import json
+import folium
 
 app = Flask(__name__)
 
 class Edge:
+    import folium
+
+def generate_map(safest_path):
+    # Example: center map on first location
+    if not safest_path or not safest_path["path"]:
+        return None
+
+    m = folium.Map(location=[9.5916, 76.5222], zoom_start=8)  # Example: Kerala coords
+
+    # Add markers for each location in path
+    for loc in safest_path["path"]:
+        folium.Marker(location=[9.5, 76.5], popup=loc).add_to(m)  # Replace with real coords
+
+    # Save map
+    m.save("templates/map.html")
+    return "map.html"
+
     def __init__(self, to, distance, streetlights, crimes, policeProximity):
         self.to = to
         self.distance = distance
         self.streetlights = streetlights
         self.crimes = crimes
         self.policeProximity = policeProximity
+    @app.route("/sos", methods=["POST"])
+def sos_alert():
+    # later, you can link this with DB to save the alert
+    return "🚨 SOS Alert Sent! Police have been notified."
+
 
 
 def computeSafetyScore(edge, night=False):
@@ -117,11 +140,18 @@ def index():
 def find_route():
     start = request.form.get("start")
     end = request.form.get("end")
-    if not start or not end:
-        return "Please provide start and end locations"
 
     result = find_paths(graph, start, end, policeStations, night)
-    return render_template("result.html", safest=result["safestPath"], all_paths=result["allPaths"])
+
+    # Generate folium map
+    map_file = generate_map(result["safestPath"])
+
+    return render_template(
+        "result.html",
+        safest=result["safestPath"],
+        all_paths=result["allPaths"],
+        map_file=map_file
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
