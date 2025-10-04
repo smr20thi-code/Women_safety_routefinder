@@ -1,8 +1,11 @@
-fimport React from "react";
+import React from "react";
+import "./App.css";
+
 function App() {
   return (
-    <div>
-      <h1>Welcome to Women Safety Route Finder</h1>
+    <div className="App">
+      <h1>Women Safest Route</h1>
+      <p>Welcome! This is your route safety application.</p>
     </div>
   );
 }
