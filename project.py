@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import json
 import folium
+from folium import Marker, PolyLine
 
 app = Flask(__name__)
 
@@ -14,20 +15,38 @@ class Edge:
         self.policeProximity = policeProximity
 
 # ======= Map Generation =======
+coordinates = {
+    "Pala": [9.5833, 76.7167],
+    "Kottayam": [9.5916, 76.5222],
+    "Changanassery": [9.4469, 76.5478],
+    "Vaikom": [9.6687, 76.4551],
+    "Kanjirappally": [9.5671, 76.8886],
+    "Kollam": [8.8932, 76.6141],
+    "Kochi": [9.9312, 76.2673]
+}
+
 def generate_map(safest_path):
     if not safest_path or not safest_path["path"]:
         return None
 
-    m = folium.Map(location=[9.5916, 76.5222], zoom_start=8)
+    path = safest_path["path"]
+    # Center map on first location
+    first_coord = coordinates.get(path[0], [9.5916, 76.5222])
+    m = folium.Map(location=first_coord, zoom_start=10)
 
-    for loc in safest_path["path"]:
-        # Replace with actual lat/lon if available
-        folium.Marker(location=[9.5, 76.5], popup=loc).add_to(m)
+    route_coords = []
 
-    # Return the HTML representation as a string
-    return m._repr_html_()
+    for loc in path:
+        coord = coordinates.get(loc)
+        if coord:
+            route_coords.append(coord)
+            Marker(location=coord, popup=loc, icon=folium.Icon(color='blue')).add_to(m)
 
+    # Draw the route line
+    if route_coords:
+        PolyLine(route_coords, color="green", weight=5, opacity=0.8).add_to(m)
 
+    return m._repr_html_()  
 # ======= SOS Route =======
 @app.route("/sos", methods=["POST"])
 def sos_alert():
