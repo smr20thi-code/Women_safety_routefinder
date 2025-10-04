@@ -4,7 +4,7 @@ import folium
 
 app = Flask(__name__)
 
-
+# ======= Edge Class =======
 class Edge:
     def __init__(self, to, distance, streetlights, crimes, policeProximity):
         self.to = to
@@ -13,29 +13,28 @@ class Edge:
         self.crimes = crimes
         self.policeProximity = policeProximity
 
-
+# ======= Map Generation =======
 def generate_map(safest_path):
     if not safest_path or not safest_path["path"]:
         return None
 
-   
     m = folium.Map(location=[9.5916, 76.5222], zoom_start=8)
 
-    
     for loc in safest_path["path"]:
-        folium.Marker(location=[9.5, 76.5], popup=loc).add_to(m)  
+        # Replace with actual lat/lon if available
+        folium.Marker(location=[9.5, 76.5], popup=loc).add_to(m)
 
-    
-    m.save("templates/map.html")
-    return "map.html"
+    # Return the HTML representation as a string
+    return m._repr_html_()
 
 
+# ======= SOS Route =======
 @app.route("/sos", methods=["POST"])
 def sos_alert():
     # later, you can link this with DB to save the alert
     return "🚨 SOS Alert Sent! Police have been notified."
 
-
+# ======= Safety Score Calculation =======
 def computeSafetyScore(edge, night=False):
     w_distance = 0.5
     w_lights = 1.0
@@ -46,7 +45,7 @@ def computeSafetyScore(edge, night=False):
              + w_crime*edge.crimes + w_night)
     return max(score, 1)
 
-
+# ======= DFS for All Paths =======
 def dfs_all_paths(graph, current, end, visited, path, all_paths):
     visited.add(current)
     path.append(current)
@@ -59,7 +58,7 @@ def dfs_all_paths(graph, current, end, visited, path, all_paths):
     path.pop()
     visited.remove(current)
 
-
+# ======= Compute Path Safety =======
 def compute_path_safety(graph, path, night=False):
     score = 0
     total_distance = 0
@@ -71,7 +70,7 @@ def compute_path_safety(graph, path, night=False):
                 break
     return score, total_distance
 
-
+# ======= Nearest Police Station =======
 def nearestPolice(graph, path, policeStations):
     max_proximity = -1
     nearest = None
@@ -82,7 +81,7 @@ def nearestPolice(graph, path, policeStations):
                 nearest = edge.to
     return nearest
 
-
+# ======= Find Paths =======
 def find_paths(graph, start, end, policeStations, night):
     all_paths = []
     dfs_all_paths(graph, start, end, set(), [], all_paths)
@@ -96,7 +95,7 @@ def find_paths(graph, start, end, policeStations, night):
             "distance": distance
         })
 
-   
+    # Sort by safetyScore (lower is safer)
     paths_with_scores.sort(key=lambda x: x["safetyScore"])
     safest_path = paths_with_scores[0] if paths_with_scores else None
     nearest = nearestPolice(graph, safest_path["path"], policeStations) if safest_path else None
@@ -111,7 +110,7 @@ def find_paths(graph, start, end, policeStations, night):
         }
     }
 
-
+# ======= Load Graph from JSON =======
 graph, policeStations, night = None, None, True  
 
 def load_graph_once():
@@ -134,7 +133,7 @@ def load_graph_once():
 
 load_graph_once()
 
-
+# ======= Flask Routes =======
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -146,16 +145,17 @@ def find_route():
 
     result = find_paths(graph, start, end, policeStations, night)
 
-   
-    map_file = generate_map(result["safestPath"])
+    # Generate map HTML
+    map_html = generate_map(result["safestPath"])
 
     return render_template(
         "result.html",
         safest=result["safestPath"],
         all_paths=result["allPaths"],
-        map_file=map_file
+        map_html=map_html
     )
 
 
+# ======= Run App =======
 if __name__ == "__main__":
     app.run(debug=True)
