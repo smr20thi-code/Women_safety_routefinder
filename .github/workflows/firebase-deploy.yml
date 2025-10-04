@@ -3,7 +3,7 @@ name: Deploy to Firebase Hosting
 on:
   push:
     branches:
-      - main   
+      - main   # change if you use another branch
 
 jobs:
   deploy:
@@ -21,5 +21,15 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
+      - name: Show Service Account Project
+        run: |
+          echo "Service account project from JSON:"
+          echo ${{ secrets.FIREBASE_SERVICE_ACCOUNT }} | jq '.project_id'
+
+ 
+      - name: List Firebase Projects
+        run: firebase projects:list || true
+
+  
       - name: Deploy to Firebase Hosting
         run: firebase deploy --only hosting --project women-safest-route
