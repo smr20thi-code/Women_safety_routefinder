@@ -10,24 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: 🧩 Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: ⚙️ Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm install
+      - name: 📦 Install dependencies
+        run: npm ci
 
-      - name: Build React app
+      - name: 🏗️ Build React app
         run: npm run build
 
-      # ✅ Install Firebase CLI globally
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+      - name: 🔥 Install Firebase CLI
+        run: npm install -g firebase-tools@latest
 
-      # ✅ Deploy using Firebase CLI with token
-      - name: Deploy to Firebase Hosting
-        run: firebase deploy --only hosting --project women-safety-route-finder --token "${{ secrets.FIREBASE_TOKEN }}"
+      # ✅ Deploy using Firebase CLI
+      # Replaces deprecated --token usage with official authentication method
+      - name: 🚀 Deploy to Firebase Hosting
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/firebase-key.json
+        run: |
+          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > ${{ github.workspace }}/firebase-key.json
+          firebase deploy --only hosting --project women-safety-route-finder
