@@ -3,7 +3,7 @@ name: Deploy React App to Firebase Hosting
 on:
   push:
     branches:
-      - main  # or 'master' if that’s your main branch
+      - main  # or master if that’s your default branch
 
 jobs:
   build_and_deploy:
@@ -18,10 +18,8 @@ jobs:
         with:
           node-version: '20'
 
-      # 👇 Change here — use npm install (not ci)
       - name: Install dependencies and build
         run: |
-          cd Women_safety_route
           npm install
           npm run build
 
@@ -32,4 +30,3 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           channelId: live
           projectId: women-safety-route
-          entryPoint: Women_safety_route
