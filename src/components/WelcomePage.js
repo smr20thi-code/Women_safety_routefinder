@@ -8,9 +8,7 @@ export default function WelcomePage({ onRouteSelect }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (from && to) {
-      onRouteSelect({ from, to });
-    }
+    if (from && to) onRouteSelect({ from, to });
   };
 
   return (
@@ -19,25 +17,30 @@ export default function WelcomePage({ onRouteSelect }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <h1>🚺 Women Safety Route Finder</h1>
-      <p>Find the safest path using real-time community reports</p>
+      <p className="subtitle">Find the safest route using real-time data</p>
 
       <form onSubmit={handleSubmit} className="route-form">
         <input
           type="text"
-          placeholder="Starting Location"
+          placeholder="Enter Starting Point"
           value={from}
           onChange={(e) => setFrom(e.target.value)}
           required
         />
         <input
           type="text"
-          placeholder="Destination"
+          placeholder="Enter Destination"
           value={to}
           onChange={(e) => setTo(e.target.value)}
           required
         />
-        <button type="submit">Find Safe Route</button>
+        <motion.button
+          type="submit"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          🔍 Find Safe Route
+        </motion.button>
       </form>
     </motion.div>
   );
