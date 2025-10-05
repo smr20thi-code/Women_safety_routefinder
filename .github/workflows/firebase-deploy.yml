@@ -1,42 +1,32 @@
-name: Deploy Women Safest Route Web App to Firebase Hosting
+name: Deploy to Firebase Hosting
 
 on:
   push:
     branches:
-      - main   # 👈 change this if your main branch is different (e.g. master)
+      - main
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # Step 1: Checkout your repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Setup Node.js
-      - name: Setup Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      # Step 4: Build the React app
       - name: Build project
         run: npm run build
 
-      # Step 5: Verify build output (for debugging if needed)
-      - name: List build output
-        run: ls -R build
-
-      # Step 6: Deploy to Firebase Hosting
-      - name: Deploy to Firebase Hosting
+      - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFEST_ROUTE }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFETY_ROUTE }}"
           channelId: live
-          projectId: women-safest-route
+          projectId: women-safety-route
