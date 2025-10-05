@@ -19,7 +19,9 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install @react-google-maps/api
 
       - name: Build project
         run: npm run build
@@ -28,7 +30,5 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFEST_ROUTE }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFETY_ROUTE_FINDER }}"
           channelId: live
-          projectId: women-safest-route
-
