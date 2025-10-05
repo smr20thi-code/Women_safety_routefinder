@@ -20,17 +20,17 @@ jobs:
         with:
           node-version: '20'
 
-      # Step 3: Install dependencies and build the React app
+      # Step 3: Install dependencies and build React app
       - name: Install dependencies and build
         run: |
           npm install
           npm run build
 
-      # Step 4: Deploy to Firebase Hosting
+      # Step 4: Deploy to Firebase Hosting using service account
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFETY_ROUTE }}"
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFETY_ROUTE }}
           channelId: live
           projectId: women-safety-route
