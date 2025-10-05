@@ -3,35 +3,34 @@ name: Deploy to Firebase Hosting
 on:
   push:
     branches:
-      - main  # or your default branch name
+      - main  # or your default branch
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🧩 Checkout repository
+      # Step 1: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: ⚙️ Set up Node.js
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: 📦 Install dependencies
+      # Step 3: Install dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: 🏗️ Build React app
+      # Step 4: Build React app
+      - name: Build project
         run: npm run build
 
-      # ✅ Install Firebase CLI (locally)
-      - name: 🔥 Install Firebase CLI
-        run: npm install firebase-tools
+      # ✅ Step 5: Install Firebase CLI globally (required!)
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
 
-      # ✅ Deploy to Firebase using npx (works even if not globally installed)
-      - name: 🚀 Deploy to Firebase Hosting
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/firebase-key.json
-        run: |
-          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > ${{ github.workspace }}/firebase-key.json
-          npx firebase-tools deploy --only hosting --project women-safety-route-finder
+      # ✅ Step 6: Deploy to Firebase Hosting
+      - name: Deploy t
