@@ -10,45 +10,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2️⃣ Setup Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
+      # 3️⃣ Install dependencies
       - name: Install dependencies
-        run: |
-          echo "🔍 Checking for package-lock.json..."
-          if [ ! -f package-lock.json ]; then
-            echo "⚠️ package-lock.json not found — generating one..."
-            npm install --package-lock-only
-          fi
-          npm ci || npm install
+        run: npm install
 
+      # 4️⃣ Build the project
       - name: Build project
         run: npm run build
 
-      # 🔑 Decode and save Firebase service account JSON
-      - name: Write Firebase key file
-        shell: bash
-        run: |
-          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > ${{ github.workspace }}/firebase-key.json
-          echo "✅ Firebase key written to file."
-          cat ${{ github.workspace }}/firebase-key.json | head -n 5
-
-      # 🧩 Install Firebase CLI
+      # 5️⃣ Install Firebase CLI globally (this fixes your "firebase not found" error)
       - name: Install Firebase CLI
         run: |
           npm install -g firebase-tools
-          echo "$(npm root -g)/.bin" >> $GITHUB_PATH
+          echo "$(npm bin -g)" >> $GITHUB_PATH
           firebase --version
 
-      # 🚀 Deploy to Firebase Hosting
+      # 6️⃣ Deploy to Firebase Hosting using service account
       - name: Deploy to Firebase
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/firebase-key.json
+          GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/Women_safety_routefinder/Women_safety_routefinder/firebase-key.json
         run: |
           echo "🚀 Starting deployment..."
           firebase deploy --only hosting --project women-safety-route-finder
