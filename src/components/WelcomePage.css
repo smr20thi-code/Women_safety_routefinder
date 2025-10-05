@@ -1,65 +1,63 @@
-/* Full-page gradient background */
-.welcome-container {
-  height: 100vh;
-  width: 100%;
-  background: linear-gradient(135deg, #1e293b, #3b82f6); /* blue-grey blend */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #f8fafc;
+/* General layout */
+body {
+  margin: 0;
   font-family: "Poppins", sans-serif;
-}
-
-/* Welcome card */
-.welcome-card {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  padding: 40px 60px;
-  text-align: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(12px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.welcome-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* Title */
-.welcome-card h1 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-  color: #e2e8f0;
-}
-
-/* Subtitle */
-.welcome-card p {
-  font-size: 1rem;
-  color: #cbd5e1;
-  margin-bottom: 30px;
-}
-
-/* Buttons */
-.welcome-buttons {
+  background-color: #263238; /* blue-grey */
+  color: #ECEFF1;
   display: flex;
-  gap: 20px;
   justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.welcome-button {
-  background-color: #3b82f6;
+/* Main container */
+.welcome-container {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3rem 4rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  width: 90%;
+  max-width: 500px;
+}
+
+/* Header */
+.welcome-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ECEFF1;
+  margin-bottom: 1rem;
+}
+
+/* Input fields */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
   border: none;
-  padding: 12px 30px;
-  border-radius: 10px;
-  color: white;
-  font-size: 1rem;
+  border-radius: 8px;
+  background: #37474F;
+  color: #ECEFF1;
+}
+
+input::placeholder {
+  color: #B0BEC5;
+}
+
+/* Button */
+button {
+  margin-top: 1rem;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #546E7A;
+  color: #ECEFF1;
+  font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
-.welcome-button:hover {
-  background-color: #2563eb;
+button:hover {
+  background-color: #78909C;
 }
