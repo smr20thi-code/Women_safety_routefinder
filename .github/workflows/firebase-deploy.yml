@@ -24,4 +24,14 @@ jobs:
       - name: 🏗️ Build React app
         run: npm run build
 
-      - name: 🔥
+      # ✅ Install Firebase CLI (locally)
+      - name: 🔥 Install Firebase CLI
+        run: npm install firebase-tools
+
+      # ✅ Deploy to Firebase using npx (works even if not globally installed)
+      - name: 🚀 Deploy to Firebase Hosting
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/firebase-key.json
+        run: |
+          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > ${{ github.workspace }}/firebase-key.json
+          npx firebase-tools deploy --only hosting --project women-safety-route-finder
