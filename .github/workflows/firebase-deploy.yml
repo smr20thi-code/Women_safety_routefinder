@@ -3,27 +3,30 @@ name: Deploy React App to Firebase Hosting
 on:
   push:
     branches:
-      - main  # or master, depending on your default branch
+      - main  # or 'master' if that’s your default branch
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout your repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js
+      # Step 2: Use Node.js v20 (recommended for React)
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # 👇 No 'cd' line here!
+      # Step 3: Install dependencies and build React app
       - name: Install dependencies and build
         run: |
           npm install
           npm run build
 
+      # Step 4: Deploy to Firebase Hosting
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
