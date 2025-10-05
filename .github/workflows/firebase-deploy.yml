@@ -3,42 +3,31 @@ name: Deploy to Firebase Hosting
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main  # or your default branch name
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout your code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      # Step 4: Build your React app
       - name: Build React app
         run: npm run build
 
-      # ✅ Step 5: Install Firebase CLI locally (not global)
+      # ✅ Install Firebase CLI locally (inside node_modules)
       - name: Install Firebase CLI
-        run: |
-          echo "Installing Firebase CLI locally..."
-          npm install firebase-tools
-          npx firebase --version
+        run: npm install firebase-tools
 
-      # ✅ Step 6: Deploy using local firebase-tools (npx)
+      # ✅ Deploy using local Firebase CLI path
       - name: Deploy to Firebase Hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: |
-          echo "Deploying to Firebase..."
-          npx firebase deploy --only hosting --project women-safety-route-finder --token "$FIREBASE_TOKEN"
+        run: npx firebase deploy --only hosting --project women-safest-route --token "${{ secrets.FIREBASE_TOKEN }}"
