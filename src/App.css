@@ -1,22 +1,59 @@
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: #fbeaff;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #ffe4ec, #f0f8ff);
 }
 
-button {
-  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+.app-container {
+  text-align: center;
+}
+
+.welcome-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.route-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 300px;
+  margin-top: 20px;
+}
+
+.route-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+}
+
+.route-form button {
+  background-color: #e91e63;
   color: white;
   border: none;
-  padding: 12px 18px;
-  border-radius: 1.5rem;
-  font-size: 16px;
+  padding: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 1rem;
 }
 
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+.route-form button:hover {
+  background-color: #c2185b;
 }
 
+.back-btn {
+  background-color: #fff;
+  color: #e91e63;
+  border: 1px solid #e91e63;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background-color: #e91e63;
+  color: #fff;
+}
