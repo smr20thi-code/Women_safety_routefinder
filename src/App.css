@@ -1,33 +1,22 @@
-/* src/App.css */
-
-.App {
-  text-align: center;
-  background-color: #f9fafb;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-}
-
-h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #007bff;
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fbeaff;
 }
 
 button {
-  background-color: #007bff;
-  border: none;
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 1.5rem;
+  font-size: 16px;
   cursor: pointer;
-  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
 }
+
