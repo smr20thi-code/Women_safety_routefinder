@@ -1,0 +1,50 @@
+.map-container {
+  height: 85vh;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  margin-top: 1rem;
+  transition: 0.3s ease-in-out;
+}
+
+.map-container:hover {
+  transform: scale(1.01);
+}
+
+.map-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(to bottom right, #fff, #fce4ec);
+  min-height: 100vh;
+}
+
+.map-header {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #e91e63;
+  text-align: center;
+}
+
+.route-details {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+}
+
+.route-details h3 {
+  color: #e91e63;
+}
+
+.route-details p {
+  font-size: 1rem;
+  color: #333;
+}
