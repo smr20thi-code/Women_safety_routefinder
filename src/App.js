@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import WelcomePage from "./components/WelcomePage";
-import MapPage from "./components/MapPage";
+import Map from "./components/Map";
 import "./App.css";
 
 function App() {
