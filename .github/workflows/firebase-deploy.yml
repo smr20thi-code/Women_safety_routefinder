@@ -1,34 +1,36 @@
-name: Firebase Hosting CI/CD
+name: Deploy to Firebase Hosting
 
 on:
   push:
     branches:
-      - main  # or 'master' if that's your default branch
+      - main
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js 20.x
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install dependencies
+      # Install dependencies
+      - name: Install Dependencies
         run: npm install
 
-      - name: Build the React app
+      # Build the React app
+      - name: Build Project
         run: npm run build
 
-      - name: Deploy to Firebase Hosting
+      # Deploy to Firebase Hosting
+      - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFEST_ROUTE }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFETY_ROUTE }}"
           channelId: live
-          projectId: women-safest-route
-
+          projectId: women-safety-route-finder
