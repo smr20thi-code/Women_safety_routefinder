@@ -6,7 +6,7 @@ clientsClaim();
 self.skipWaiting();
 
 // ✅ Safely use __WB_MANIFEST
-precacheAndRoute(self.__WB_MANIFEST || []);
+precacheAndRoute(self.__WB_MANIFEST);
 
 // Fallback network strategy
 self.addEventListener('fetch', (event) => {
