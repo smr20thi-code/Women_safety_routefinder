@@ -1,17 +1,12 @@
 {
   "hosting": {
-    "site": "women-safety-route-finder",
+    "site": "women-safety-route",
     "public": "build",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
     ]
   }
 }
+
