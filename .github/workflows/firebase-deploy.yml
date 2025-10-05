@@ -3,28 +3,28 @@ name: Deploy React App to Firebase Hosting
 on:
   push:
     branches:
-      - main   # 👈 change if your main branch has another name
+      - main   
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout your repository
-      - name: Checkout code
+      # Step 1: Checkout the repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Setup Node.js
+      # Step 2: Setup Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # Step 3: Install dependencies (use npm install to avoid EUSAGE error)
+      # Step 3: Install dependencies (no package-lock.json needed)
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Build the React app
+      # Step 4: Build React app
       - name: Build React app
         run: npm run build
 
@@ -35,6 +35,4 @@ jobs:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFEST_ROUTE }}"
           channelId: live
-          projectId: women-saf
-
-
+          projectId: women-safest-route
