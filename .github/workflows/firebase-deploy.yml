@@ -1,45 +1,34 @@
-name: 🚀 Deploy Women Safety Route Finder to Firebase
+name: Firebase Hosting CI/CD
 
 on:
   push:
     branches:
-      - main   # 👈 Deploy automatically whenever code is pushed to 'main'
+      - main  # or 'master' if that's your default branch
 
 jobs:
   build_and_deploy:
-    name: 🔧 Build & 🚀 Deploy
     runs-on: ubuntu-latest
 
     steps:
-      # 🧩 STEP 1: Checkout the latest code
-      - name: 📥 Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ⚙️ STEP 2: Setup Node.js (LTS version)
-      - name: 🧰 Setup Node.js
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
 
-      # 📦 STEP 3: Install project dependencies
-      - name: 📦 Install Dependencies
+      - name: Install dependencies
         run: npm install
 
-      # 🏗️ STEP 4: Build the React app for production
-      - name: 🏗️ Build App
+      - name: Build the React app
         run: npm run build
 
-      # 🔥 STEP 5: Deploy to Firebase Hosting
-      - name: 🔥 Deploy to Firebase Hosting
+      - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"  # Auto-auth from GitHub
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFEST_ROUTE }}"  # Firebase Auth Secret
-          channelId: live                           # Deploy to production
-          projectId: women-safest-route              # Your Firebase project ID
-
-      # ✅ STEP 6: Confirm Deployment
-      - name: ✅ Deployment Complete
-        run: echo "🎉 Firebase Hosting Deployment Successful!"
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFEST_ROUTE }}'
+          channelId: live
+          projectId: women-safest-route
 
