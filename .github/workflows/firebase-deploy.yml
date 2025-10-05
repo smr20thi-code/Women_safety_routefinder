@@ -1,4 +1,3 @@
-
 name: Deploy to Firebase Hosting
 
 on:
@@ -11,23 +10,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      # Step 3: Install dependencies safely
       - name: Install dependencies
         run: |
-          echo "🔍 Checking for package-lock.json..."
+          echo '🔍 Checking for package-lock.json...'
           if [ -f package-lock.json ]; then
-            echo "✅ Lock file found. Running npm ci..."
+            echo '✅ package-lock.json found. Using npm ci.'
             npm ci
           else
-            echo "⚠️ Lock file not found. Running npm install inst
+            echo '⚠️ No package-lock.json found. Running npm install instead.'
+            npm install
+          fi
+
+      - name: Build project
+        run: |
+          echo '🏗️ Building project...'
+          npm run build
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          channelId: live
+          project
