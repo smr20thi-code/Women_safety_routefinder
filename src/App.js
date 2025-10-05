@@ -5,9 +5,21 @@ import "./App.css";
 
 function App() {
   const [route, setRoute] = useState(null);
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
   return (
-    <div className="app-container">
+    <div className={`app-container ${theme}`}>
+      <header className="app-header">
+        <h1>🚺 Women Safety Route Finder</h1>
+        <button onClick={toggleTheme} className="theme-toggle">
+          {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+        </button>
+      </header>
+
       {!route ? (
         <WelcomePage onRouteSelect={setRoute} />
       ) : (
@@ -18,4 +30,3 @@ function App() {
 }
 
 export default App;
-
