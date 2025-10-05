@@ -23,10 +23,10 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      - name: Install firebase-tools (local)
+      - name: Install Firebase CLI (local)
         run: npm install firebase-tools --no-save
 
-      - name: Write service account key to file
+      - name: Write Firebase service account key
         run: |
           echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > ${{ github.workspace }}/firebase-key.json
 
