@@ -1,27 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { GoogleMap, LoadScript, DirectionsRenderer, DirectionsService } from "@react-google-maps/api";
+import { motion } from "framer-motion";
+import "./MapPage.css";
 
 export default function MapPage({ route, onBack }) {
-  const [directions, setDirections] = React.useState(null);
+  const [directions, setDirections] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const handleDirections = (response) => {
     if (response && response.status === "OK") {
       setDirections(response);
+      setLoading(false);
     }
   };
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
-      <div style={{ position: "absolute", top: 10, left: 10, zIndex: 10 }}>
-        <button onClick={onBack} className="back-btn">← Back</button>
-        <h2>Route from {route.from} to {route.to}</h2>
+    <div className="map-wrapper">
+      <div className="top-bar">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <h3>Route: {route.from} → {route.to}</h3>
       </div>
+
+      {loading && (
+        <motion.div
+          className="loading-spinner"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <div className="spinner"></div>
+          <p>Finding the safest route...</p>
+        </motion.div>
+      )}
 
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
         <GoogleMap
           mapContainerStyle={{ height: "100vh", width: "100%" }}
-          zoom={12}
-          center={{ lat: 9.5916, lng: 76.5222 }}
+          zoom={13}
+          center={{ lat: 12.9716, lng: 77.5946 }}
         >
           <DirectionsService
             options={{
