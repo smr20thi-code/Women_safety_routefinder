@@ -1,5 +1,14 @@
 {
   "projects": {
-    "default": "women-safest-route"
+    "default": "women-safety-route-finder"
+  },
+  "targets": {
+    "women-safety-route-finder": {
+      "hosting": {
+        "default": [
+          "women-safety-route-finder"
+        ]
+      }
+    }
   }
 }
