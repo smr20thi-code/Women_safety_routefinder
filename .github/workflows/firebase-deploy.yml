@@ -21,7 +21,7 @@ jobs:
       # 👇 Change here — use npm install (not ci)
       - name: Install dependencies and build
         run: |
-          cd Women_safety_routefinder
+          cd Women_safety_route
           npm install
           npm run build
 
