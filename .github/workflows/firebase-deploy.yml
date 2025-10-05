@@ -1,3 +1,4 @@
+
 name: Deploy to Firebase Hosting
 
 on:
@@ -10,37 +11,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code
+      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js environment
+      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      # Step 3: Install dependencies (safe fallback if lock file missing)
+      # Step 3: Install dependencies safely
       - name: Install dependencies
         run: |
+          echo "🔍 Checking for package-lock.json..."
           if [ -f package-lock.json ]; then
-            echo "✅ package-lock.json found. Using npm ci"
+            echo "✅ Lock file found. Running npm ci..."
             npm ci
           else
-            echo "⚠️ No package-lock.json found. Using npm install instead"
-            npm install
-          fi
-
-      # Step 4: Build your React app
-      - name: Build project
-        run: npm run build
-
-      # Step 5: Deploy to Firebase Hosting
-      - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          channelId: live
-          projectId: women-safety-route-finder   # <-- update this if your Firebase project ID differs
+            echo "⚠️ Lock file not found. Running npm install inst
