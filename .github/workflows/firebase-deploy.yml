@@ -1,34 +1,38 @@
-name: Deploy React App to Firebase Hosting
+name: Deploy Women Safest Route Web App to Firebase Hosting
 
 on:
   push:
     branches:
-      - main   
+      - main   # 👈 change this if your main branch is different (e.g. master)
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
+      # Step 1: Checkout your repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Setup Node.js environment
+      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # Step 3: Install dependencies (no package-lock.json needed)
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Build React app
-      - name: Build React app
+      # Step 4: Build the React app
+      - name: Build project
         run: npm run build
 
-      # Step 5: Deploy to Firebase Hosting
+      # Step 5: Verify build output (for debugging if needed)
+      - name: List build output
+        run: ls -R build
+
+      # Step 6: Deploy to Firebase Hosting
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
