@@ -1,0 +1,202 @@
+[
+  {
+    "id": "road1",
+    "from": "Pala",
+    "to": "Kottayam",
+    "distance": 35,
+    "streetlights": 20,
+    "crimes": 1,
+    "policeProximity": 5,
+    "cctv": 5
+  },
+  {
+    "id": "road2",
+    "from": "Changanassery",
+    "to": "Vaikom",
+    "distance": 25,
+    "streetlights": 18,
+    "crimes": 2,
+    "policeProximity": 4,
+    "cctv": 4
+  },
+  {
+    "id": "road3",
+    "from": "Kanjirappally",
+    "to": "Pala",
+    "distance": 30,
+    "streetlights": 22,
+    "crimes": 2,
+    "policeProximity": 5,
+    "cctv": 5
+  },
+  {
+    "id": "road4",
+    "from": "Kollam",
+    "to": "Kottayam",
+    "distance": 80,
+    "streetlights": 25,
+    "crimes": 3,
+    "policeProximity": 10,
+    "cctv": 7
+  },
+  {
+    "id": "road5",
+    "from": "Kottayam",
+    "to": "Kochi",
+    "distance": 50,
+    "streetlights": 28,
+    "crimes": 2,
+    "policeProximity": 8,
+    "cctv": 6
+  },
+  {
+    "id": "road6",
+    "from": "Ettumanoor",
+    "to": "Pala",
+    "distance": 20,
+    "streetlights": 24,
+    "crimes": 1,
+    "policeProximity": 4,
+    "cctv": 6
+  },
+  {
+    "id": "road7",
+    "from": "Vaikom",
+    "to": "Kottayam",
+    "distance": 30,
+    "streetlights": 26,
+    "crimes": 2,
+    "policeProximity": 6,
+    "cctv": 7
+  },
+  {
+    "id": "road8",
+    "from": "Thiruvalla",
+    "to": "Changanassery",
+    "distance": 12,
+    "streetlights": 30,
+    "crimes": 0,
+    "policeProximity": 3,
+    "cctv": 8
+  },
+  {
+    "id": "road9",
+    "from": "Kottayam",
+    "to": "Thiruvalla",
+    "distance": 25,
+    "streetlights": 27,
+    "crimes": 1,
+    "policeProximity": 4,
+    "cctv": 7
+  },
+  {
+    "id": "road10",
+    "from": "Alappuzha",
+    "to": "Kottayam",
+    "distance": 45,
+    "streetlights": 29,
+    "crimes": 2,
+    "policeProximity": 5,
+    "cctv": 6
+  },
+  {
+    "id": "road11",
+    "from": "Pathanamthitta",
+    "to": "Kanjirappally",
+    "distance": 40,
+    "streetlights": 22,
+    "crimes": 3,
+    "policeProximity": 7,
+    "cctv": 5
+  },
+  {
+    "id": "road12",
+    "from": "Kochi",
+    "to": "Alappuzha",
+    "distance": 55,
+    "streetlights": 30,
+    "crimes": 2,
+    "policeProximity": 6,
+    "cctv": 8
+  },
+  {
+    "id": "road13",
+    "from": "Kottayam",
+    "to": "Ettumanoor",
+    "distance": 8,
+    "streetlights": 35,
+    "crimes": 0,
+    "policeProximity": 3,
+    "cctv": 9
+  },
+  {
+    "id": "road14",
+    "from": "Pala",
+    "to": "Thodupuzha",
+    "distance": 25,
+    "streetlights": 21,
+    "crimes": 1,
+    "policeProximity": 4,
+    "cctv": 6
+  },
+  {
+    "id": "road15",
+    "from": "Thodupuzha",
+    "to": "Muvattupuzha",
+    "distance": 30,
+    "streetlights": 23,
+    "crimes": 2,
+    "policeProximity": 5,
+    "cctv": 5
+  },
+  {
+    "id": "road16",
+    "from": "Kottayam",
+    "to": "Changanassery",
+    "distance": 18,
+    "streetlights": 25,
+    "crimes": 1,
+    "policeProximity": 4,
+    "cctv": 7
+  },
+  {
+    "id": "road17",
+    "from": "Muvattupuzha",
+    "to": "Kochi",
+    "distance": 45,
+    "streetlights": 27,
+    "crimes": 2,
+    "policeProximity": 6,
+    "cctv": 7
+  },
+  {
+    "id": "road18",
+    "from": "Vaikom",
+    "to": "Ettumanoor",
+    "distance": 22,
+    "streetlights": 24,
+    "crimes": 1,
+    "policeProximity": 5,
+    "cctv": 6
+  },
+  {
+    "id": "road19",
+    "from": "Kollam",
+    "to": "Pathanamthitta",
+    "distance": 70,
+    "streetlights": 26,
+    "crimes": 4,
+    "policeProximity": 9,
+    "cctv": 5
+  },
+  {
+    "id": "road20",
+    "from": "Alappuzha",
+    "to": "Changanassery",
+    "distance": 28,
+    "streetlights": 25,
+    "crimes": 1,
+    "policeProximity": 5,
+    "cctv": 7
+  }
+]
