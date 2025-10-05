@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import WelcomePage from "./components/WelcomePage";
-import Map from "./components/Map";
+import Map from "./components/Map";   // ✅ Correct import
 import "./App.css";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
   return (
     <div className={`app-container ${theme}`}>
       <header className="app-header">
-        <h1>🚺 Women Safety Route Finder</h1>
+        <h1>🛡️ Women Safety Route Finder</h1>
         <button onClick={toggleTheme} className="theme-toggle">
           {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
         </button>
@@ -23,7 +23,7 @@ function App() {
       {!route ? (
         <WelcomePage onRouteSelect={setRoute} />
       ) : (
-        <MapPage route={route} onBack={() => setRoute(null)} />
+        <Map route={route} onBack={() => setRoute(null)} />
       )}
     </div>
   );
