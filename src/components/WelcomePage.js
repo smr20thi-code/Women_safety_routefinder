@@ -1,18 +1,22 @@
 import React from "react";
 import "./WelcomePage.css";
+import { useNavigate } from "react-router-dom";
 
-function WelcomePage({ onStart }) {
+export default function WelcomePage() {
+  const navigate = useNavigate();
+
   return (
     <div className="welcome-container">
-      <h1 className="welcome-title">👩‍🦰 Women Safety Route Finder</h1>
-      <p>Find the safest path using real-time community data</p>
-
-      <input type="text" placeholder="Enter Starting Point" />
-      <input type="text" placeholder="Enter Destination" />
-
-      <button onClick={onStart}>Find Safe Route</button>
+      <header>
+        <h1>👩‍🦰 Women Safety Route Finder</h1>
+      </header>
+      <div className="welcome-content">
+        <h2>Find the safest route using community data</h2>
+        <input type="text" placeholder="Enter Starting Point" />
+        <input type="text" placeholder="Enter Destination" />
+        <button onClick={() => navigate("/map")}>Find Safe Route</button>
+        <button onClick={() => navigate("/report")}>Report Unsafe Area</button>
+      </div>
     </div>
   );
 }
-
-export default WelcomePage;
