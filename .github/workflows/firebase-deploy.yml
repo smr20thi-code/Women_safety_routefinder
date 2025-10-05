@@ -3,17 +3,17 @@ name: Deploy to Firebase Hosting
 on:
   push:
     branches:
-      - main
+      - main   # or master if that’s your default branch
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Use Node.js 20
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -28,6 +28,6 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFETY_ROUTE }}"
-          projectId: "women-safety-route"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_WOMEN_SAFETY_ROUTE_FINDER }}"
           channelId: live
+          projectId: women-safety-route-finder
